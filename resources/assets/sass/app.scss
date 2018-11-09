@@ -18,3 +18,10 @@
   border: none;
   padding: unset;
 }
+.page-item.active .page-link{
+  background-color: $dark;
+  border-color: $dark;
+}
+.page-link{
+  color: $dark;
+}

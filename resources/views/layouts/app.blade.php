@@ -14,6 +14,7 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('lib/summernote/summernote-bs4.min.js') }}"></script>
     <script src="{{ asset('lib/summernote/lang/summernote-es-ES.js') }}"></script>
+    <script src="{{asset('lib/jquery-ui/jquery-ui.min.js')}}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -22,15 +23,26 @@
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('lib/summernote/summernote-bs4.css') }}">
+    <link rel="stylesheet" href="{{ asset('lib/jquery-ui/jquery-ui.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('lib/jquery-ui/jquery-ui.theme.min.css')}}">
 </head>
 <body>
     <div id="app">
         @include('layouts.navbar')
-
         <main class="py-4">
             @yield('content')
         </main>
     </div>
     @yield('js')
+    @if(Session::has('success'))
+    <script>
+        $(document).ready(function(){
+            swal({
+                type: "success",
+                text: "{{Session::get('success')}}"
+            })
+        })
+    </script>
+    @endif
 </body>
 </html>

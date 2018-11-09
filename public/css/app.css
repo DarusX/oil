@@ -10481,3 +10481,12 @@ a.text-dark:focus {
   padding: unset;
 }
 
+.page-item.active .page-link {
+  background-color: #343a40;
+  border-color: #343a40;
+}
+
+.page-link {
+  color: #343a40;
+}
+

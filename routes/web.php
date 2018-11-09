@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Banner;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('index')->with([
+        'banners' => Banner::next()->get()
+    ]);
 });
 
 Auth::routes();
@@ -26,6 +29,7 @@ Route::prefix('/posts')->group(function(){
 });
 
 Route::resources([
-    'posts' => 'PostController'
+    'posts' => 'PostController',
+    'banners' => 'BannerController',
 ]);
 

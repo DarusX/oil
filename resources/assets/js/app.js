@@ -6,6 +6,9 @@
  */
 
 require('./bootstrap');
+require('@fortawesome/fontawesome-free/js/all')
+
+window.swal = require('sweetalert2')
 
 window.Vue = require('vue');
 
@@ -26,5 +29,15 @@ $(document).ready(function(){
             "X-CSRF-TOKEN": $("meta[name='csrf-token']").attr("content")
         }
     })
-
+    $(".destroy").click(function(event){
+        event.preventDefault()
+        $.ajax({
+            url: $(this).attr("href"),
+            method: "DELETE",
+            success: (data) => {
+                location.reload()
+            }
+        })
+    })
+    $('[data-toggle="tooltip"]').tooltip()
 })

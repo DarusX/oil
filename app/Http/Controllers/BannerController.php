@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Post;
+use App\Banner;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
 
-class PostController extends Controller
+class BannerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +16,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('posts.index')->with([
-            'posts' => Post::orderBy('created_at', 'DESC')->paginate(10)
+        return view('banners.index')->with([
+            'banners' => Banner::paginate(50)
         ]);
     }
 
@@ -27,7 +28,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        return view('banners.create');
     }
 
     /**
@@ -39,41 +40,35 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required',
-            'cover' => 'required|image|dimensions:width=1200,height=628',
-            'description' => 'required',
-            'post' => 'required'
+            'banner' => 'required|image|dimensions:width=1200,height=628',
+            'expiration' => 'required|date'
         ]);
-        Post::create([
-            'title' => $request->title,
-            'cover' => $request->file('cover')->store('/files/posts/covers', 'public'),
-            'description' => $request->description,
-            'post' => $request->post
+        Banner::create([
+            'banner' => $request->file('banner')->store('files/banners', 'public'),
+            'expiration' => Carbon::createFromFormat('Y-m-d', $request->expiration)->endOfDay()
         ]);
-        Session::flash('success', 'Post guardado');
+        Session::flash('success', 'Banner creado');
         return redirect()->back();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Post  $post
+     * @param  \App\Banner  $banner
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show(Banner $banner)
     {
-        return view('posts.show')->with([
-            'post' => $post
-        ]);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Post  $post
+     * @param  \App\Banner  $banner
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit(Banner $banner)
     {
         //
     }
@@ -82,10 +77,10 @@ class PostController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Post  $post
+     * @param  \App\Banner  $banner
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, Banner $banner)
     {
         //
     }
@@ -93,16 +88,12 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Post  $post
+     * @param  \App\Banner  $banner
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy(Banner $banner)
     {
-        //
-    }
-
-    public function upload(Request $request)
-    {
-        return $request->file('file')->store('/files/posts', 'public');
+        $banner->delete();
+        Session::flash("success", "Banner eliminado");
     }
 }
