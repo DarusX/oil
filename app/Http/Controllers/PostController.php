@@ -15,7 +15,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        return view('posts.index')->with([
+            'posts' => Post::all()
+        ]);
     }
 
     /**
@@ -44,7 +46,7 @@ class PostController extends Controller
         ]);
         Post::create([
             'title' => $request->title,
-            'cover' => $request->file('cover')->store('/files/posts/covers'),
+            'cover' => $request->file('cover')->store('/files/posts/covers', 'public'),
             'description' => $request->description,
             'post' => $request->post
         ]);
@@ -60,7 +62,9 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return $post;
+        return view('posts.show')->with([
+            'post' => $post
+        ]);
     }
 
     /**
