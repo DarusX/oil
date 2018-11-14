@@ -14,7 +14,8 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('lib/summernote/summernote-bs4.min.js') }}"></script>
     <script src="{{ asset('lib/summernote/lang/summernote-es-ES.js') }}"></script>
-    <script src="{{asset('lib/jquery-ui/jquery-ui.min.js')}}"></script>
+    <script src="{{ asset('lib/jquery-ui/jquery-ui.min.js')}}"></script>
+    <script src="{{ asset('lib/Chart/Chart.bundle.min.js')}}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -29,7 +30,7 @@
 <body>
     <div id="app">
         @include('layouts.navbar')
-        <main class="py-4">
+        <main>
             @yield('content')
         </main>
     </div>

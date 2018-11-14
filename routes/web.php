@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Banner;
+use App\Price;
+use Carbon\Carbon;
+use App\Classification;
+use App\Currency;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +20,13 @@ use App\Banner;
 
 Route::get('/', function () {
     return view('index')->with([
-        'banners' => Banner::next()->get()
+        'banners' => Banner::next()->get(),
+        'classifications' => Classification::with(['prices' => function($query){
+            $query->orderBy('created_at', 'DESC')->limit(3);
+        }])->get(),
+        'currencies' => Currency::with(['exchanges' => function($query){
+            $query->orderBy('created_at', 'DESC')->limit(3);
+        }])->get()
     ]);
 });
 
@@ -31,5 +41,7 @@ Route::prefix('/posts')->group(function(){
 Route::resources([
     'posts' => 'PostController',
     'banners' => 'BannerController',
+    'prices' => 'PriceController',
+    'exchanges' => 'ExchangeController'
 ]);
 

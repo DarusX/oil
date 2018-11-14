@@ -1,6 +1,7 @@
 
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,900');
 
 // Variables
 @import 'variables';
@@ -24,4 +25,10 @@
 }
 .page-link{
   color: $dark;
+}
+.title{
+  font-weight: 900;
+}
+#accordionSidebar .card-header{
+  padding: unset;
 }
