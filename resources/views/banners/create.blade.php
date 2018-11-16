@@ -1,6 +1,5 @@
 @extends('dashboard')
-@section('workspace')
-
+@section('content')
 <h1 class="title">Banner</h1>
 <form action="{{route('banners.store')}}" method="post" enctype="multipart/form-data">
     {{csrf_field()}}
@@ -28,7 +27,6 @@
         <button type="submit" class="btn btn-warning">Aceptar</button>
     </div>
 </form>
-
 @endsection
 @section('js')
 <script>

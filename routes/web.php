@@ -6,6 +6,8 @@ use App\Price;
 use Carbon\Carbon;
 use App\Classification;
 use App\Currency;
+use App\Http\Controllers\RoleController;
+use App\Solution;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +28,8 @@ Route::get('/', function () {
         }])->get(),
         'currencies' => Currency::with(['exchanges' => function($query){
             $query->orderBy('created_at', 'DESC')->limit(3);
-        }])->get()
+        }])->get(),
+        'solutions' => Solution::all()
     ]);
 });
 
@@ -39,9 +42,12 @@ Route::prefix('/posts')->group(function(){
 });
 
 Route::resources([
+    'roles' => 'RoleController',
+    'privileges' => 'PrivilegeController',
     'posts' => 'PostController',
     'banners' => 'BannerController',
     'prices' => 'PriceController',
-    'exchanges' => 'ExchangeController'
+    'exchanges' => 'ExchangeController',
+    'users' => 'UserController',
 ]);
 

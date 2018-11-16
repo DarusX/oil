@@ -1,4 +1,12 @@
 @extends('layouts.app')
+@section('meta')
+<meta property="og:title" content="{{$post->title}}">
+<meta property="og:type" content="article">
+<meta property="og:url" content="{{URL::current()}}">
+<meta property="og:site_name" content="{{env('APP_NAME')}}">
+<meta property="og:description" content="{{$post->description}}">
+<meta property="og:image" content="{{asset($post->cover)}}">
+@endsection
 @section('content')
 <div class="container">
     <div class="row">

@@ -75,6 +75,53 @@
         </div>
         @endforeach
     </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card bg-dark text-white text-center">
+                <div class="card-body">
+                    <h3 class="card-title title">VENTA Y SERVICIO</h3>
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            Producto garantizado de acuerdo a normas internacionales
+                        </li>
+                        <li class="list-inline-item">
+                            Entregas exactas y a tiempo
+                        </li>
+                        <li class="list-inline-item">
+                            Autotransportes modernos y personal capacitado
+                        </li>
+                        <li class="list-inline-item">
+                            Suministro por vìa terrestre, férrea y marítima
+                        </li>
+                        <li class="list-inline-item">
+                            Carga asegurada y monitoreada vìa satélite
+                        </li>
+                        <li class="list-inline-item">
+                            Unidades con equipo de seguridad y contra incendio
+                        </li>
+                        <li class="list-inline-item">
+                            Entrega de documentación arancelaria y de importación, asì como certificado de composición química del producto
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="title">Soluciones</h2>
+        </div>
+        @foreach($solutions as $solution)
+        <div class="col-md-4 d-flex align-items-stretch py-2">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title title">{{$solution->solution}}</h4>
+                    <p class="card-text">{{$solution->description}}</p>
+                </div>
+            </div>
+        </div>
+        @endforeach
+    </div>
 </div>
 @endsection
 @section('js')

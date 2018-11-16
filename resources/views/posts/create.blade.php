@@ -1,5 +1,5 @@
 @extends('dashboard')
-@section('workspace')
+@section('content')
 
 <h1 class="title">Post</h1>
 <form action="{{route('posts.store')}}" method="post" enctype="multipart/form-data">
@@ -54,6 +54,14 @@
         $('.summernote').summernote({
             lang: "es-ES",
             height: 500,
+            toolbar: [
+                ["font", ["bold", "italic", "underline", "strikethrough", "superscript", "subscript", "fontname", "color", "forecolor", "backcolor", "clear"]],
+                ["fontsize", ["fontsize"]],
+                ["para", ["style", "ul", "ol", "paragraph", "height"]],
+                ["height", ["height"]],
+                ["insert", ["picture", "link", "video", "table", "hr"]],
+                ["misc", ["undo", "redo", "codeview", "fullscreen"]]
+            ],
             callbacks: {
                 onImageUpload: function (files, editor, welEditable) {
                     sendFile(files[0], editor, welEditable);

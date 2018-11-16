@@ -5,9 +5,15 @@ namespace App\Http\Controllers;
 use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use App\User;
 
 class PostController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -27,6 +33,7 @@ class PostController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', new Post());
         return view('posts.create');
     }
 
@@ -38,6 +45,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', new Post());
         $this->validate($request, [
             'title' => 'required',
             'cover' => 'required|image|dimensions:width=1200,height=628',
@@ -75,7 +83,10 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        $this->authorize('update', $post);
+        return view('posts.edit')->with([
+            'post' => $post
+        ]);
     }
 
     /**
@@ -87,7 +98,10 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $this->authorize('update', $post);
+        $post->update($request->all());
+        Session::flash('success', 'Post guardado');
+        return redirect()->back();
     }
 
     /**
