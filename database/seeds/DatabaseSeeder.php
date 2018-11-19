@@ -72,7 +72,23 @@ class DatabaseSeeder extends Seeder
             ['privilege' => 'Editar'],
             ['privilege' => 'Eliminar'],
         ]);
-        factory(Solution::class, 10)->create();
+
+        Solution::create([
+            'solution' => 'Equipos y Medidores',
+            'description' => 'HIDROEXPERTS ofrece venta e intalación de equipos despachadores, medición y software de control, para multiusuarios de autoconsumo.'
+        ]);
+
+        Solution::create([
+            'solution' => 'Software de Medición y Control',
+            'description' => 'Medición y control en tiempo real , asì como visita de alertas  y operaciones de inspección de rutina para multiusuarios de consumo.'
+        ]);
+
+        Solution::create([
+            'solution' => 'Tanques de Almacenamiento',
+            'description' => 'HIDROEXPERTS venta e instalación de tanques de almacenamiento para diésel, gas LP, gas natural comprimido y licuado. Para ello utiliza los servicios de construcción e ingeniería de empresas con alta tecnología.'
+        ]);
+
+        //factory(Solution::class, 10)->create();
         
         App::make(ExchangeController::class)->index();
         App::make(PriceController::class)->index();

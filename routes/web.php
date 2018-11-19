@@ -49,5 +49,6 @@ Route::resources([
     'prices' => 'PriceController',
     'exchanges' => 'ExchangeController',
     'users' => 'UserController',
+    'solutions' => 'SolutionController'
 ]);
 

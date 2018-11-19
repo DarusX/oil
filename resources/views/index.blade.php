@@ -112,7 +112,7 @@
             <h2 class="title">Soluciones</h2>
         </div>
         @foreach($solutions as $solution)
-        <div class="col-md-4 d-flex align-items-stretch py-2">
+        <div class="col-md-4 text-center d-flex align-items-stretch py-2">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title title">{{$solution->solution}}</h4>

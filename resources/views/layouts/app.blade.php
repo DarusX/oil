@@ -35,11 +35,7 @@
                 </div>
             </div>
             @yield('content')
-            <div class="container px-0">
-                <div class="row bg-dark text-white" style="margin-left: 15px; margin-right: 15px">
-                    @include('layouts.footer')
-                </div>
-            </div>
+            @include('layouts.footer')
         </main>
     </div>
     @yield('js')
